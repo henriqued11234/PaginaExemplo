@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Endpoints Cursos</title>
+</head>
+<body>
+    <h1>Teste dos Endpoints - Cursos</h1>
+    
+    <!-- 1. Teste Listar Todos -->
+    <div>
+        <h2>1. Listar Cursos</h2>
+        <button onclick="testListar()">Testar Lista (GET)</button>
+    </div>
+    
+    <!-- 2. Teste Buscar por ID -->
+    <div>
+        <h2>2. Buscar Curso por ID</h2>
+        <input type="number" id="idBusca" placeholder="ID">
+        <button onclick="testBuscarId()">Testar Busca (GET)</button>
+    </div>
+    
+    <!-- 3. Teste Cadastrar -->
+    <div>
+        <h2>3. Cadastrar Curso</h2>
+        <input type="text" id="nome" placeholder="Nome do Curso">
+        <input type="number" id="cargaHoraria" placeholder="Carga Horária">
+        <button onclick="testCadastrar()">Testar Cadastro (POST)</button>
+    </div>
+    
+    <div id="resultado" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;"></div>
+
+    <script>
+        // Troque pela URL do Render se já tiver feito deploy
+        const BASE_URL = 'https://apiexemplo-j1kp.onrender.com/cursos';
+        
+        function mostrarResultado(mensagem) {
+            document.getElementById('resultado').innerHTML = mensagem;
+        }
+        
+        // 1. Listar Todos (GET /cursos)
+        async function testListar() {
+            mostrarResultado('Carregando cursos...');
+            
+            try {
+                const response = await fetch(BASE_URL);
+                const data = await response.json();
+                mostrarResultado('<strong>Lista de Cursos (GET):</strong><br>' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                mostrarResultado('Erro: ' + error.message);
+            }
+        }
+        
+        // 2. Buscar por ID (GET /cursos/{id})
+        async function testBuscarId() {
+            const id = document.getElementById('idBusca').value;
+            
+            if (!id) {
+                mostrarResultado('Preencha o ID');
+                return;
+            }
+            
+            mostrarResultado('Buscando curso...');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/${id}`);
+                const data = await response.json();
+                mostrarResultado('<strong>Busca por ID (GET):</strong><br>' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                mostrarResultado('Erro: ' + error.message);
+            }
+        }
+        
+        // 3. Cadastrar (POST /cursos)
+        async function testCadastrar() {
+            const nome = document.getElementById('nome').value;
+            const cargaHoraria = document.getElementById('cargaHoraria').value;
+            
+            if (!nome || !cargaHoraria) {
+                mostrarResultado('Preencha nome e carga horária');
+                return;
+            }
+            
+            mostrarResultado('Cadastrando...');
+            
+            try {
+                const response = await fetch(BASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome: nome,
+                        cargaHoraria: Number(cargaHoraria)
+                    })
+                });
+                
+                const data = await response.json();
+                mostrarResultado('<strong>Cadastro (POST):</strong><br>' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                mostrarResultado('Erro: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Endpoints Cursos</title>
+</head>
+<body>
+    <h1>Teste dos Endpoints - Cursos</h1>
+    
+    <!-- 1. Teste Listar Todos -->
+    <div>
+        <h2>1. Listar Cursos</h2>
+        <button onclick="testListar()">Testar Lista (GET)</button>
+    </div>
+    
+    <!-- 2. Teste Buscar por ID -->
+    <div>
+        <h2>2. Buscar Curso por ID</h2>
+        <input type="number" id="idBusca" placeholder="ID">
+        <button onclick="testBuscarId()">Testar Busca (GET)</button>
+    </div>
+    
+    <!-- 3. Teste Cadastrar -->
+    <div>
+        <h2>3. Cadastrar Curso</h2>
+        <input type="text" id="nome" placeholder="Nome do Curso">
+        <input type="number" id="cargaHoraria" placeholder="Carga Horária">
+        <button onclick="testCadastrar()">Testar Cadastro (POST)</button>
+    </div>
+    
+    <div id="resultado" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;"></div>
+
+    <script>
+        // Troque pela URL do Render se já tiver feito deploy
+        const BASE_URL = 'https://apiexemplo-j1kp.onrender.com/cursos';
+        
+        function mostrarResultado(mensagem) {
+            document.getElementById('resultado').innerHTML = mensagem;
+        }
+        
+        // 1. Listar Todos (GET /cursos)
+        async function testListar() {
+            mostrarResultado('Carregando cursos...');
+            
+            try {
+                const response = await fetch(BASE_URL);
+                const data = await response.json();
+                mostrarResultado('<strong>Lista de Cursos (GET):</strong><br>' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                mostrarResultado('Erro: ' + error.message);
+            }
+        }
+        
+        // 2. Buscar por ID (GET /cursos/{id})
+        async function testBuscarId() {
+            const id = document.getElementById('idBusca').value;
+            
+            if (!id) {
+                mostrarResultado('Preencha o ID');
+                return;
+            }
+            
+            mostrarResultado('Buscando curso...');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/${id}`);
+                const data = await response.json();
+                mostrarResultado('<strong>Busca por ID (GET):</strong><br>' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                mostrarResultado('Erro: ' + error.message);
+            }
+        }
+        
+        // 3. Cadastrar (POST /cursos)
+        async function testCadastrar() {
+            const nome = document.getElementById('nome').value;
+            const cargaHoraria = document.getElementById('cargaHoraria').value;
+            
+            if (!nome || !cargaHoraria) {
+                mostrarResultado('Preencha nome e carga horária');
+                return;
+            }
+            
+            mostrarResultado('Cadastrando...');
+            
+            try {
+                const response = await fetch(BASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome: nome,
+                        cargaHoraria: Number(cargaHoraria)
+                    })
+                });
+                
+                const data = await response.json();
+                mostrarResultado('<strong>Cadastro (POST):</strong><br>' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                mostrarResultado('Erro: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
